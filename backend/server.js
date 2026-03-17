@@ -30,8 +30,8 @@ app.use('/api/complaints', complaintRoutes);
 app.use('/api/notifications', notificationRoutes);
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/mernproject')
-  .then(() => console.log('MongoDB connected'))
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected to Atlas'))
   .catch(err => console.log(err));
 
 // Basic route
