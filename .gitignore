@@ -3,10 +3,10 @@ node_modules/
 backend/node_modules/
 frontend/node_modules/
 
-# Environment files
-.env
-backend/.env
-frontend/.env
+# Environment files (DANGER: User explicitly requested to push these)
+# .env
+# backend/.env
+# frontend/.env
 .env.local
 .env.development.local
 .env.test.local
