@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import AnimatedBackground from "../components/AnimatedBackground";
+import { useUser } from "../context/UserContext";
 
 function Login() {
   const [isToggled, setIsToggled] = useState(false);
   const navigate = useNavigate();
+  const { updateUser } = useUser();
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
@@ -226,7 +228,7 @@ function Login() {
           return;
         }
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify({ id: data.user.id, name: data.user.name, email: data.user.email, role: data.user.role }));
+        updateUser({ id: data.user.id, name: data.user.name, email: data.user.email, role: data.user.role, profilePicture: data.user.profilePicture });
         navigate(data.user.role === "Admin" ? "/admin" : "/home");
       } else {
         setErrorMsg(data.message || "Login failed");
@@ -259,7 +261,7 @@ function Login() {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify({ id: data.user.id, name: data.user.name, email: data.user.email, role: data.user.role }));
+        updateUser({ id: data.user.id, name: data.user.name, email: data.user.email, role: data.user.role, profilePicture: data.user.profilePicture });
         navigate(data.user.role === "Admin" ? "/admin" : "/home");
       } else {
         setErrorMsg(data.message || "Registration failed");
