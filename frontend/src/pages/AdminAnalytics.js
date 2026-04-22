@@ -68,7 +68,7 @@ function AdminAnalytics() {
 
   const fetchComplaints = async (token) => {
     try {
-      const res = await fetch('http://localhost:5000/api/complaints/all', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints/all`, {
         headers: { 'Authorization': `Bearer ${token || localStorage.getItem('token')}` }
       });
       const data = await res.json();

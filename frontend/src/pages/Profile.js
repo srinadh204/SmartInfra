@@ -33,7 +33,7 @@ function Profile() {
 
   const fetchProfile = async (token) => {
     try {
-      const res = await fetch('http://localhost:5000/api/auth/profile', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/profile`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -70,7 +70,7 @@ function Profile() {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/auth/profile-picture', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/profile-picture`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -103,7 +103,7 @@ function Profile() {
     setMessage('');
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/auth/profile', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/profile`, {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
@@ -228,7 +228,7 @@ function Profile() {
                 style={{
                   width: '80px', height: '80px', borderRadius: '50%',
                   background: profilePicture 
-                    ? `url(http://localhost:5000${profilePicture}) center/cover no-repeat` 
+                    ? `url(${process.env.REACT_APP_API_URL}${profilePicture}) center/cover no-repeat` 
                     : 'linear-gradient(135deg, #06b6d4, #8b5cf6)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: '2rem', fontWeight: 800, color: 'white',

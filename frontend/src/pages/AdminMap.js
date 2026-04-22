@@ -63,7 +63,7 @@ function AdminMap() {
 
   const fetchComplaints = async (token) => {
     try {
-      const res = await fetch('http://localhost:5000/api/complaints/all', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -303,7 +303,7 @@ function AdminMap() {
                             {/* Image */}
                             {comp.images && comp.images.length > 0 && (
                               <img
-                                src={`http://localhost:5000${comp.images[0]}`}
+                                src={`${process.env.REACT_APP_API_URL}${comp.images[0]}`}
                                 alt="Damage"
                                 style={{ width: '100%', height: '110px', objectFit: 'cover', borderRadius: '6px', marginBottom: '8px' }}
                                 onError={e => e.target.style.display = 'none'}

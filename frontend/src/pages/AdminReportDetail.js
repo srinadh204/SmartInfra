@@ -19,7 +19,7 @@ function AdminReportDetail() {
 
   const fetchComplaint = async (token) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/complaints/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -40,7 +40,7 @@ function AdminReportDetail() {
   const handleStatusChange = async (newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/complaints/${id}/status`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ status: newStatus })
@@ -128,8 +128,8 @@ function AdminReportDetail() {
             {complaint.images && complaint.images.length > 0 ? (
                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '16px' }}>
                  {complaint.images.map((img, idx) => (
-                   <a key={idx} href={`http://localhost:5000${img}`} target="_blank" rel="noreferrer" style={{ display: 'block', height: '150px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--glass-border)' }}>
-                     <img src={`http://localhost:5000${img}`} alt="Evidence" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s ease' }} onMouseOver={e=>e.currentTarget.style.transform='scale(1.05)'} onMouseOut={e=>e.currentTarget.style.transform='scale(1)'} />
+                   <a key={idx} href={`${process.env.REACT_APP_API_URL}${img}`} target="_blank" rel="noreferrer" style={{ display: 'block', height: '150px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--glass-border)' }}>
+                     <img src={`${process.env.REACT_APP_API_URL}${img}`} alt="Evidence" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s ease' }} onMouseOver={e=>e.currentTarget.style.transform='scale(1.05)'} onMouseOut={e=>e.currentTarget.style.transform='scale(1)'} />
                    </a>
                  ))}
                </div>

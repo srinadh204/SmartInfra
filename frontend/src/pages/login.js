@@ -99,7 +99,7 @@ function Login() {
     setLoading(true);
     setErrorMsg("");
     try {
-      const response = await fetch("http://localhost:5000/api/auth/send-email-otp", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/send-email-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: regEmail }),
@@ -128,7 +128,7 @@ function Login() {
     setLoading(true);
     setErrorMsg("");
     try {
-      const response = await fetch("http://localhost:5000/api/auth/verify-email-otp", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/verify-email-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: regEmail, otp: regEmailOtp }),
@@ -157,7 +157,7 @@ function Login() {
     }
     setLoading(true); setErrorMsg("");
     try {
-      const response = await fetch("http://localhost:5000/api/auth/forgot-password", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/forgot-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: resetEmail }),
@@ -184,7 +184,7 @@ function Login() {
     }
     setLoading(true); setErrorMsg("");
     try {
-      const response = await fetch("http://localhost:5000/api/auth/verify-otp-reset-password", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/verify-otp-reset-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: resetEmail, otp: resetOtp, newPassword: newPassword }),
@@ -214,7 +214,7 @@ function Login() {
     e.preventDefault();
     setErrorMsg(""); setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword, role: loginRole, adminSecret: loginRole === "Admin" ? loginAdminSecret : undefined }),
@@ -249,7 +249,7 @@ function Login() {
     }
     setErrorMsg(""); setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

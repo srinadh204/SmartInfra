@@ -19,7 +19,7 @@ function AdminDashboard() {
 
   const fetchComplaints = async (token) => {
     try {
-      const res = await fetch('http://localhost:5000/api/complaints/all', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -30,7 +30,7 @@ function AdminDashboard() {
   const handleStatusChange = async (id, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/complaints/${id}/status`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ status: newStatus })

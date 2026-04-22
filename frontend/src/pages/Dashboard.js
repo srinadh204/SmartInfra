@@ -22,7 +22,7 @@ function Dashboard() {
 
   const fetchComplaints = async (token) => {
     try {
-      const res = await fetch('http://localhost:5000/api/complaints', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -241,7 +241,7 @@ function Dashboard() {
                        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
                          {comp.images.map((img, idx) => (
                            <div key={idx} style={{ width: '64px', height: '64px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--glass-border)', flexShrink: 0 }}>
-                             <img src={`http://localhost:5000${img}`} alt="Damage Evidence" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                             <img src={`${process.env.REACT_APP_API_URL}${img}`} alt="Damage Evidence" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                            </div>
                          ))}
                        </div>

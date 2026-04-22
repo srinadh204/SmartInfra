@@ -40,7 +40,7 @@ function EditReportModal({ complaint, onClose, onSaved }) {
       newImages.forEach((img) => data.append('images', img));
 
       const res = await fetch(
-        `http://localhost:5000/api/complaints/${complaint._id}/edit`,
+        `${process.env.REACT_APP_API_URL}/api/complaints/${complaint._id}/edit`,
         {
           method: 'PUT',
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },

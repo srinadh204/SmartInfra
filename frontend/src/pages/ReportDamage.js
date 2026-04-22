@@ -105,7 +105,7 @@ function ReportDamage() {
       if (location.lng) data.append('lng', location.lng);
       images.forEach(img => data.append('images', img));
 
-      const res = await fetch('http://localhost:5000/api/complaints', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/complaints`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         body: data

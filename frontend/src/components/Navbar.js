@@ -41,7 +41,7 @@ function Navbar() {
 
   const fetchNotifications = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/notifications', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notifications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -56,7 +56,7 @@ function Navbar() {
     const fd = new FormData();
     fd.append('image', file);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/profile-picture', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/profile-picture`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: fd
@@ -85,7 +85,7 @@ function Navbar() {
 
   const markRead = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/notifications/${id}/read`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/notifications/${id}/read`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -250,7 +250,7 @@ function Navbar() {
                 <div style={{
                   width: '38px', height: '38px', borderRadius: '50%',
                   background: user?.profilePicture
-                    ? `url(http://localhost:5000${user.profilePicture}) center/cover no-repeat`
+                    ? `url(${process.env.REACT_APP_API_URL}${user.profilePicture}) center/cover no-repeat`
                     : 'linear-gradient(135deg, var(--accent-cyan), var(--accent-primary))',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: 'white', flexShrink: 0, overflow: 'hidden',
@@ -289,7 +289,7 @@ function Navbar() {
                     <div style={{
                       width: '42px', height: '42px', borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
                       background: user?.profilePicture
-                        ? `url(http://localhost:5000${user.profilePicture}) center/cover no-repeat`
+                        ? `url(${process.env.REACT_APP_API_URL}${user.profilePicture}) center/cover no-repeat`
                         : 'linear-gradient(135deg, var(--accent-cyan), var(--accent-primary))',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.2rem', fontWeight: 700
                     }}>
